@@ -76,9 +76,9 @@ class Stg_Volume_Price_Change : public Strategy {
     // Initialize strategy initial values.
     Stg_Volume_Price_Change_Params _params;
     if (!Terminal::IsOptimization()) {
-      SetParamsByTf<Stg_Volume_Price_Change_Params>(_params, _tf, stg_cci_arrays_m1, stg_cci_arrays_m5,
-                                                    stg_cci_arrays_m15, stg_cci_arrays_m30, stg_cci_arrays_h1,
-                                                    stg_cci_arrays_h4, stg_cci_arrays_h4);
+      SetParamsByTf<Stg_Volume_Price_Change_Params>(_params, _tf, stg_vpc_arrays_m1, stg_vpc_arrays_m5,
+                                                    stg_vpc_arrays_m15, stg_vpc_arrays_m30, stg_vpc_arrays_h1,
+                                                    stg_vpc_arrays_h4, stg_vpc_arrays_h4);
     }
     // Initialize strategy parameters.
     Volume_Price_Change_Params ccia_params(_params.Volume_Price_Change_Period,
