@@ -7,7 +7,7 @@
 #include <EA31337-classes/Indicator.mqh>
 
 // Enums.
-// Indicator mode identifiers used in CCI Arrows indicator.
+// Indicator mode identifiers used in Volume Price Change indicator.
 enum ENUM_VPC { VPC_UP = 0, VPC_DOWN = 1, FINAL_VPC_ENTRY };
 
 // Structs.
@@ -18,7 +18,7 @@ struct Volume_Price_Change_Params : IndicatorParams {
   // Struct constructor.
   void Volume_Price_Change_Params(unsigned int _period, ENUM_APPLIED_PRICE _applied_price, int _shift = 0)
       : period(_period), applied_price(_applied_price), shift(_shift) {
-    itype = INDI_CCI;
+//itype = INDI_CCI;
     max_modes = FINAL_VPC_ENTRY;
     custom_indi_name = "Indi_Volume_Price_Change";
     SetDataSourceType(IDATA_ICUSTOM);
@@ -49,8 +49,8 @@ class Indi_Volume_Price_Change : public Indicator {
   /**
    * Returns value for the indicator.
    */
-  static double GetValue(string _symbol, ENUM_TIMEFRAMES _tf, int _period, int _ap, ENUM_VPC _mode = 0,
-                         int _shift = 0, Indicator *_obj = NULL) {
+  static double GetValue(string _symbol, ENUM_TIMEFRAMES _tf, int _period, int _ap, ENUM_VPC _mode = 0, int _shift = 0,
+                         Indicator *_obj = NULL) {
 #ifdef __MQL4__
     return ::iCustom(_symbol, _tf, "Indi_Volume_Price_Change", _period, _ap, _mode, _shift);
 #else  // __MQL5__
@@ -91,7 +91,7 @@ class Indi_Volume_Price_Change : public Indicator {
       case IDATA_ICUSTOM:
         istate.handle = istate.is_changed ? INVALID_HANDLE : istate.handle;
         _value = Indi_Volume_Price_Change::GetValue(GetSymbol(), GetTf(), GetPeriod(), GetAppliedPrice(), _mode, _shift,
-                                           GetPointer(this));
+                                                    GetPointer(this));
         break;
       case IDATA_INDICATOR:
         // @todo: Add custom calculation.
